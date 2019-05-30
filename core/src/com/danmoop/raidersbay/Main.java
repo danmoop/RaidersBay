@@ -25,7 +25,13 @@ public class Main extends ApplicationAdapter {
 		manager.getActiveLevel().update();
 		manager.getActiveLevel().render(batch);
 	}
-	
+
+	@Override
+	public void resize(int width, int height)
+	{
+		manager.getActiveLevel().resize(width, height);
+	}
+
 	@Override
 	public void dispose () {
 		manager.getActiveLevel().dispose();

@@ -7,10 +7,37 @@ import com.badlogic.gdx.math.Vector2;
 public abstract class GameObject
 {
     protected Texture texture;
+
+    protected int textureWidth;
+    protected int textureHeight;
+
     protected Vector2 pos;
 
-    public abstract void update();
-    public abstract void render(SpriteBatch batch);
+    GameObject(Texture texture)
+    {
+        this.texture = texture;
 
-    public abstract void dispose();
+        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        textureWidth = texture.getWidth();
+        textureHeight = texture.getHeight();
+
+        pos = new Vector2(0, 0);
+    }
+
+    protected void increaseTextureDimensions(float n)
+    {
+        textureWidth *= n;
+        textureHeight *= n;
+    }
+
+    public void setTexture(Texture texture)
+    {
+        this.texture = texture;
+    }
+
+    protected abstract void update();
+    protected abstract void render(SpriteBatch batch);
+
+    protected abstract void dispose();
 }
