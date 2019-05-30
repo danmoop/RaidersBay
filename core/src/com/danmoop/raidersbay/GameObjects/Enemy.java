@@ -12,12 +12,6 @@ public class Enemy extends Ship
     }
 
     @Override
-    public void attack(Ship ship, int damage)
-    {
-
-    }
-
-    @Override
     protected void update()
     {
 

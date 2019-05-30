@@ -1,7 +1,5 @@
 package com.danmoop.raidersbay.GameObjects;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.danmoop.raidersbay.Model.Ship;
@@ -14,14 +12,9 @@ public class Player extends Ship
     }
 
     @Override
-    public void attack(Ship ship, int damage)
-    {
-        ship.HP -= damage;
-    }
-
-    @Override
     protected void update()
     {
+
     }
 
     @Override

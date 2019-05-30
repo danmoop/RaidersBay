@@ -6,8 +6,10 @@ import com.danmoop.raidersbay.Main;
 
 import static com.danmoop.raidersbay.Settings.*;
 
-public class DesktopLauncher {
-	public static void main (String[] arg) {
+public class DesktopLauncher
+{
+	public static void main (String[] arg)
+	{
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
 		config.title = GAME_TITLE;

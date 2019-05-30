@@ -10,7 +10,7 @@ public class LevelManager
 
     public LevelManager()
     {
-        levels = new Stack<Level>();
+        levels = new Stack<>();
     }
 
     public void open(Level level)

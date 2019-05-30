@@ -39,11 +39,6 @@ public abstract class Level
         {
             gameObject.update();
         }
-
-        for (HUDElement hudElement : hudElements)
-        {
-            hudElement.update();
-        }
     }
 
     protected void renderGameObjects(SpriteBatch batch)

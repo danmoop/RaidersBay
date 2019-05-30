@@ -20,5 +20,8 @@ public abstract class Ship extends GameObject
         return HP <= 0;
     }
 
-    public abstract void attack(Ship ship, int damage);
+    public void attack(Ship ship, int damage)
+    {
+        ship.HP -= damage;
+    }
 }
