@@ -1,10 +1,16 @@
 package com.danmoop.raidersbay.Model;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.SnapshotArray;
 
+import static com.danmoop.raidersbay.Settings.SCREEN_HEIGHT;
+import static com.danmoop.raidersbay.Settings.SCREEN_WIDTH;
+
 public abstract class Level
 {
+    private OrthographicCamera camera;
+
     private SnapshotArray<GameObject> gameObjects;
     private SnapshotArray<HUDElement> hudElements;
 
@@ -12,6 +18,15 @@ public abstract class Level
     {
         this.gameObjects = new SnapshotArray<>();
         this.hudElements = new SnapshotArray<>();
+
+        camera = new OrthographicCamera(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+        camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
+    }
+
+    public OrthographicCamera getCamera()
+    {
+        return camera;
     }
 
     protected GameObject addGameObject(GameObject object)
@@ -39,6 +54,8 @@ public abstract class Level
         {
             gameObject.update();
         }
+
+        camera.update();
     }
 
     protected void renderGameObjects(SpriteBatch batch)
@@ -52,6 +69,8 @@ public abstract class Level
         {
             hudElement.render(batch);
         }
+
+        batch.setProjectionMatrix(camera.combined);
     }
 
     protected void disposeGameObjects()

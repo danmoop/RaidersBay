@@ -24,7 +24,6 @@ public class Text implements HUDElement
     public Text(String pathFile, String text, float x, float y, int fontSize, FontConfiguration configuration)
     {
         // Layout is where out text placed, so we understand what are text's X & Y coordinates, and also width & height
-
         glyphLayout = new GlyphLayout();
 
         // Initialize free font generator using a font taken from a specific directory
@@ -91,5 +90,4 @@ public class Text implements HUDElement
         font.dispose();
         generator.dispose();
     }
-
 }

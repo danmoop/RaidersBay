@@ -1,19 +1,21 @@
 package com.danmoop.raidersbay.Model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+import static com.danmoop.raidersbay.Settings.SCREEN_HEIGHT;
+
 public abstract class GameObject
 {
     protected Texture texture;
-
     protected int textureWidth;
     protected int textureHeight;
 
     protected Vector2 pos;
 
-    GameObject(Texture texture)
+    protected GameObject(Texture texture)
     {
         this.texture = texture;
 
@@ -25,15 +27,24 @@ public abstract class GameObject
         pos = new Vector2(0, 0);
     }
 
-    protected void increaseTextureDimensions(float n)
+    protected void setSize(int width, int height)
     {
-        textureWidth *= n;
-        textureHeight *= n;
+        textureWidth = width;
+        textureHeight = height;
     }
 
     public void setTexture(Texture texture)
     {
         this.texture = texture;
+    }
+
+    protected boolean isClickedOn()
+    {
+        int x = Gdx.input.getX();
+        int y = Gdx.input.getY();
+
+        return x >= pos.x && x <= pos.x + textureWidth
+                && SCREEN_HEIGHT - y >= pos.y && SCREEN_HEIGHT - y <= pos.y + textureHeight;
     }
 
     protected abstract void update();
