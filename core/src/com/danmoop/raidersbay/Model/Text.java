@@ -72,6 +72,11 @@ public class Text implements HUDElement
         return y;
     }
 
+    void setText(String text)
+    {
+        glyphLayout.setText(font, text);
+    }
+
     public void setPos(float x, float y)
     {
         this.x = x;

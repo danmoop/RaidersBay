@@ -27,6 +27,22 @@ public abstract class GameObject
         pos = new Vector2(0, 0);
     }
 
+    public int getWidth()
+    {
+        return textureWidth;
+    }
+
+    public int getHeight()
+    {
+        return textureHeight;
+    }
+
+    public void setPos(float x, float y)
+    {
+        pos.x = x;
+        pos.y = y;
+    }
+
     protected void setSize(int width, int height)
     {
         textureWidth = width;
@@ -38,7 +54,7 @@ public abstract class GameObject
         this.texture = texture;
     }
 
-    protected boolean isClickedOn()
+    public boolean isClickedOn()
     {
         int x = Gdx.input.getX();
         int y = Gdx.input.getY();

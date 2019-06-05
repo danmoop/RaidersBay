@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.danmoop.raidersbay.Model.Ship;
 
-public class Player extends Ship
+public class Enemy extends Ship
 {
-    public Player(Texture texture, int HP, int damage)
+    public Enemy(Texture texture, int HP, int damage)
     {
         super(texture, HP, damage);
     }
@@ -16,31 +16,32 @@ public class Player extends Ship
     @Override
     protected void update()
     {
-        HPText.setPos(pos.x + textureWidth / 2f - HPText.getWidth() / 2f, pos.y + textureHeight + 25);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.D))
-            pos.x += 4;
-        if(Gdx.input.isKeyPressed(Input.Keys.A))
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
             pos.x -= 4;
 
-        if(Gdx.input.isKeyPressed(Input.Keys.W))
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+            pos.x += 4;
+
+        if(Gdx.input.isKeyPressed(Input.Keys.UP))
             pos.y += 4;
-        if(Gdx.input.isKeyPressed(Input.Keys.S))
+
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
             pos.y -= 4;
+
+        HPText.setPos(pos.x + textureWidth / 2f - HPText.getWidth() / 2f, pos.y + textureHeight + 25);
     }
 
     @Override
     protected void render(SpriteBatch batch)
     {
-        HPText.render(batch);
+        batch.draw(texture, pos.x, pos.y);
 
-        batch.draw(texture, pos.x, pos.y, textureWidth, textureHeight);
+        HPText.render(batch);
     }
 
     @Override
     protected void dispose()
     {
         texture.dispose();
-        HPText.dispose();
     }
 }

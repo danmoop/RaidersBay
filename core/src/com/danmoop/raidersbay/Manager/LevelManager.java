@@ -22,6 +22,8 @@ public class LevelManager
 
         else
         {
+            levels.peek().dispose();
+
             levels.pop();
 
             levels.add(level);

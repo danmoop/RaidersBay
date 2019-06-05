@@ -1,6 +1,5 @@
 package com.danmoop.raidersbay.UI;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.danmoop.raidersbay.Model.GameObject;
@@ -23,10 +22,6 @@ public class UIButton extends GameObject
     @Override
     protected void update()
     {
-        if(Gdx.input.justTouched())
-        {
-            System.out.println(isClickedOn());
-        }
     }
 
     @Override
@@ -38,6 +33,6 @@ public class UIButton extends GameObject
     @Override
     protected void dispose()
     {
-
+        texture.dispose();
     }
 }

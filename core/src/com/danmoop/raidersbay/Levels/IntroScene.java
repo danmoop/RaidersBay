@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.danmoop.raidersbay.Manager.LevelManager;
 import com.danmoop.raidersbay.Model.Level;
 import com.danmoop.raidersbay.Model.Text;
 import com.danmoop.raidersbay.UI.UIButton;
@@ -17,9 +18,12 @@ public class IntroScene extends Level
     private UIButton playButton;
     private Texture player;
     private Texture enemy;
+    private LevelManager manager;
 
-    public IntroScene()
+    public IntroScene(LevelManager manager)
     {
+        this.manager = manager;
+
         gameTitle = (Text) addHUDElement(new Text("Fonts/eina.ttf", GAME_TITLE, 100, 100, 40, STYLED_TEXT()));
         playButton = (UIButton) addGameObject(new UIButton(new Texture("UI/play.png")));
 
@@ -42,6 +46,9 @@ public class IntroScene extends Level
     @Override
     public void update()
     {
+        if(Gdx.input.justTouched() && playButton.isClickedOn())
+            manager.open(new PlayScene(manager));
+
         updateGameObjects();
     }
 
@@ -64,7 +71,6 @@ public class IntroScene extends Level
     @Override
     public void resize(int width, int height)
     {
-
     }
 
     @Override

@@ -17,7 +17,8 @@ public class Main extends ApplicationAdapter
 		batch = new SpriteBatch();
 
 		manager = new LevelManager();
-		manager.open(new IntroScene());
+
+		manager.open(new IntroScene(manager));
 	}
 
 	@Override
