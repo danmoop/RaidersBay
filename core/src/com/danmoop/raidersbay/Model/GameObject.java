@@ -43,24 +43,40 @@ public abstract class GameObject
         pos.y = y;
     }
 
-    protected void setSize(int width, int height)
+    public void setSize(int width, int height)
     {
         textureWidth = width;
         textureHeight = height;
     }
 
-    public void setTexture(Texture texture)
+    public float getX()
+    {
+        return pos.x;
+    }
+
+    public float getY()
+    {
+        return pos.y;
+    }
+
+    protected void setTexture(Texture texture)
     {
         this.texture = texture;
     }
 
-    public boolean isClickedOn()
+    public boolean isTargeted()
     {
         int x = Gdx.input.getX();
         int y = Gdx.input.getY();
 
         return x >= pos.x && x <= pos.x + textureWidth
                 && SCREEN_HEIGHT - y >= pos.y && SCREEN_HEIGHT - y <= pos.y + textureHeight;
+    }
+
+    public boolean collidedWith(GameObject object)
+    {
+        return pos.x + textureWidth > object.getX() && pos.x < object.getX() + object.getWidth()
+                && pos.y + textureHeight > object.getY() && pos.y < object.getY() + object.getHeight();
     }
 
     protected abstract void update();

@@ -1,7 +1,6 @@
 package com.danmoop.raidersbay.Model;
 
 import com.badlogic.gdx.graphics.Texture;
-
 import static com.danmoop.raidersbay.Settings.STYLED_TEXT;
 
 public abstract class Ship extends GameObject
@@ -18,10 +17,10 @@ public abstract class Ship extends GameObject
         this.HP = HP;
         this.damage = damage;
 
-        HPText = new Text("Fonts/eina.ttf", String.valueOf(this.HP), pos.x + (textureWidth / 4f), pos.y + textureHeight + 25, 18, STYLED_TEXT());
+        HPText = new Text("Fonts/eina.ttf", String.valueOf(this.HP), pos.x + (textureWidth / 4f), pos.y + textureHeight + 25, 25, STYLED_TEXT());
     }
 
-    public boolean isDead()
+    public boolean isDestroyed()
     {
         return HP <= 0;
     }
@@ -34,8 +33,14 @@ public abstract class Ship extends GameObject
     private void takeDamage(int damage)
     {
         HP -= damage;
-        HPText.setText(String.valueOf(HP));
+
+        setText(String.valueOf(HP));
 
         HPText.setPos(pos.x + textureWidth / 2f - HPText.getWidth() / 2f, pos.y + textureHeight + 25);
+    }
+
+    public void setText(String text)
+    {
+        HPText.setText(text);
     }
 }

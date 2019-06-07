@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.danmoop.raidersbay.Manager.LevelManager;
+import com.danmoop.raidersbay.Manager.Storage;
 import com.danmoop.raidersbay.Model.Level;
 import com.danmoop.raidersbay.Model.Text;
 import com.danmoop.raidersbay.UI.UIButton;
@@ -15,6 +16,7 @@ import static com.danmoop.raidersbay.Settings.*;
 public class IntroScene extends Level
 {
     private Text gameTitle;
+    private Text highScoreText;
     private UIButton playButton;
     private Texture player;
     private Texture enemy;
@@ -24,7 +26,8 @@ public class IntroScene extends Level
     {
         this.manager = manager;
 
-        gameTitle = (Text) addHUDElement(new Text("Fonts/eina.ttf", GAME_TITLE, 100, 100, 40, STYLED_TEXT()));
+        gameTitle = (Text) addHUDElement(new Text("Fonts/eina.ttf", GAME_TITLE, 100, 100, 50, STYLED_TEXT()));
+
         playButton = (UIButton) addGameObject(new UIButton(new Texture("UI/play.png")));
 
         player = new Texture("Ships/Intro/ship (3).png");
@@ -41,12 +44,18 @@ public class IntroScene extends Level
 
         player.setFilter(Linear, Linear);
         enemy.setFilter(Linear, Linear);
+
+        int highScore = Storage.getInteger("highscore");
+
+        highScoreText = (Text) addHUDElement(new Text("Fonts/eina.ttf", "Highscore: Wave " + highScore, 100, 100, 30, STYLED_TEXT()));
+
+        highScoreText.setPos(SCREEN_WIDTH / 2f - highScoreText.getWidth() / 2f, 30 + highScoreText.getHeight());
     }
 
     @Override
     public void update()
     {
-        if(Gdx.input.justTouched() && playButton.isClickedOn())
+        if(Gdx.input.justTouched() && playButton.isTargeted())
             manager.open(new PlayScene(manager));
 
         updateGameObjects();

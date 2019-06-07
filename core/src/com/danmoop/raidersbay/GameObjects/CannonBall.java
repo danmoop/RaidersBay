@@ -1,26 +1,28 @@
 package com.danmoop.raidersbay.GameObjects;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.danmoop.raidersbay.Model.Ship;
+import com.danmoop.raidersbay.Model.GameObject;
 
-public class Player extends Ship
+public class CannonBall extends GameObject
 {
-    public Player(Texture texture, int HP, int damage)
+    public CannonBall(Texture texture)
     {
-        super(texture, HP, damage);
+        super(texture);
+
+        textureWidth = 20;
+        textureHeight = 20;
     }
 
     @Override
     protected void update()
     {
-        HPText.setPos(pos.x + textureWidth / 2f - HPText.getWidth() / 2f, pos.y + textureHeight + 25);
+        pos.x += 3;
     }
 
     @Override
     protected void render(SpriteBatch batch)
     {
-        HPText.render(batch);
-
         batch.draw(texture, pos.x, pos.y, textureWidth, textureHeight);
     }
 
@@ -28,6 +30,5 @@ public class Player extends Ship
     protected void dispose()
     {
         texture.dispose();
-        HPText.dispose();
     }
 }

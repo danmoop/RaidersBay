@@ -1,10 +1,9 @@
 package com.danmoop.raidersbay.GameObjects;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.danmoop.raidersbay.Model.Ship;
+
+import static com.danmoop.raidersbay.Settings.RANDOMSHIP;
 
 public class Enemy extends Ship
 {
@@ -16,25 +15,18 @@ public class Enemy extends Ship
     @Override
     protected void update()
     {
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
-            pos.x -= 4;
-
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-            pos.x += 4;
-
-        if(Gdx.input.isKeyPressed(Input.Keys.UP))
-            pos.y += 4;
-
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
-            pos.y -= 4;
-
         HPText.setPos(pos.x + textureWidth / 2f - HPText.getWidth() / 2f, pos.y + textureHeight + 25);
+    }
+
+    public void generateNewShip()
+    {
+        setTexture(RANDOMSHIP(true));
     }
 
     @Override
     protected void render(SpriteBatch batch)
     {
-        batch.draw(texture, pos.x, pos.y);
+        batch.draw(texture, pos.x, pos.y, textureWidth, textureHeight);
 
         HPText.render(batch);
     }
@@ -43,5 +35,6 @@ public class Enemy extends Ship
     protected void dispose()
     {
         texture.dispose();
+        HPText.dispose();
     }
 }

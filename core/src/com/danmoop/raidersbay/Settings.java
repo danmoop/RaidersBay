@@ -1,7 +1,12 @@
 package com.danmoop.raidersbay;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.danmoop.raidersbay.Model.FontConfiguration;
+
+import java.util.Random;
 
 public class Settings
 {
@@ -20,5 +25,16 @@ public class Settings
             parameter.shadowOffsetY = 2;
             parameter.shadowOffsetX = 2;
         };
+    }
+
+    public static Texture RANDOMSHIP(boolean isPirate)
+    {
+        Random random = new Random();
+
+        FileHandle[] ships =
+                isPirate ? Gdx.files.internal("Ships/Pirates").list()
+                        : Gdx.files.internal("Ships/Raiders").list();
+
+        return new Texture(ships[random.nextInt(ships.length)]);
     }
 }
