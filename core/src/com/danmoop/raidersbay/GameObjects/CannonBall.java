@@ -6,10 +6,13 @@ import com.danmoop.raidersbay.Model.GameObject;
 
 public class CannonBall extends GameObject
 {
-    public CannonBall(Texture texture)
+    private int speed;
+
+    public CannonBall(Texture texture, int speed)
     {
         super(texture);
 
+        this.speed = speed;
         textureWidth = 20;
         textureHeight = 20;
     }
@@ -17,7 +20,7 @@ public class CannonBall extends GameObject
     @Override
     protected void update()
     {
-        pos.x += 3;
+        pos.x += speed;
     }
 
     @Override

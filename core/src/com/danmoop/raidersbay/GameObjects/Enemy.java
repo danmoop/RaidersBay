@@ -7,6 +7,8 @@ import static com.danmoop.raidersbay.Settings.RANDOMSHIP;
 
 public class Enemy extends Ship
 {
+    private boolean attacking;
+
     public Enemy(Texture texture, int HP, int damage)
     {
         super(texture, HP, damage);
@@ -36,5 +38,15 @@ public class Enemy extends Ship
     {
         texture.dispose();
         HPText.dispose();
+    }
+
+    public boolean isAttacking()
+    {
+        return attacking;
+    }
+
+    public void setAttacking(boolean attacking)
+    {
+        this.attacking = attacking;
     }
 }

@@ -27,6 +27,18 @@ public class Settings
         };
     }
 
+    public static FontConfiguration FIRE_TEXT()
+    {
+        return parameter -> {
+            parameter.color = new Color(231 / 255f, 76 / 255f, 60 / 255f,1);
+            parameter.borderColor = Color.BLACK;
+            parameter.shadowColor = Color.BLACK;
+            parameter.borderWidth = 2;
+            parameter.shadowOffsetY = 2;
+            parameter.shadowOffsetX = 2;
+        };
+    }
+
     public static Texture RANDOMSHIP(boolean isPirate)
     {
         Random random = new Random();

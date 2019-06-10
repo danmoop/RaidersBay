@@ -43,9 +43,9 @@ public abstract class Level
         return element;
     }
 
-    public void removeGameObject(GameObject object)
+    public void destroyGameObject(GameObject object)
     {
-        gameObjects.removeIndex(gameObjects.indexOf(object, false));
+        gameObjects.removeIndex(gameObjects.indexOf(object, true));
     }
 
     protected void updateGameObjects()
